@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slider</title>
+    <title>Image Slider with Movie Info</title>
     <style>
         /* Basic styling */
         body {
@@ -30,10 +30,33 @@
         .slide {
             flex: 1 0 auto;
             transition: transform 0.5s ease;
+            position: relative;
         }
         img {
             width: 100%;
             height: auto;
+        }
+        /* Movie info container */
+        .movie-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
         }
         /* Navigation arrows styling */
         .prev, .next {
@@ -63,9 +86,33 @@
 
 <div class="slider-container">
     <div class="slider">
-        <div class="slide"><img src="car1.jfif" alt="Image 1"></div>
-        <div class="slide"><img src="car2.jfif" alt="Image 2"></div>
-        <div class="slide"><img src="car3.jfif" alt="Image 3"></div>
+        <div class="slide">
+            <img src="image1.jpg" alt="Image 1">
+            <div class="movie-info">
+                <h3>Movie Title 1</h3>
+                <p>Description of Movie 1</p>
+                <p>Rating: 4.5/5</p>
+                <button class="play-btn">&#9658;</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="image2.jpg" alt="Image 2">
+            <div class="movie-info">
+                <h3>Movie Title 2</h3>
+                <p>Description of Movie 2</p>
+                <p>Rating: 4.2/5</p>
+                <button class="play-btn">&#9658;</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="image3.jpg" alt="Image 3">
+            <div class="movie-info">
+                <h3>Movie Title 3</h3>
+                <p>Description of Movie 3</p>
+                <p>Rating: 4.7/5</p>
+                <button class="play-btn">&#9658;</button>
+            </div>
+        </div>
     </div>
     <button class="prev" onclick="prevSlide()">&#10094;</button>
     <button class="next" onclick="nextSlide()">&#10095;</button>
@@ -93,6 +140,7 @@
     }
 
     function prevSlide() {
+        let slides = document.getElementsByClassName("slide");
         if (slideIndex === 1) {
             slideIndex = slides.length;
         } else {
@@ -102,6 +150,7 @@
     }
 
     function nextSlide() {
+        let slides = document.getElementsByClassName("slide");
         if (slideIndex === slides.length) {
             slideIndex = 1;
         } else {
