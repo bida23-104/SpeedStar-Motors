@@ -6,6 +6,17 @@
     <title>Image Slider</title>
     <style>
         /* Basic styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
         .slider-container {
             width: 80%;
             margin: auto;
@@ -46,15 +57,23 @@
 </head>
 <body>
 
+<header>
+    <h1>Header</h1>
+</header>
+
 <div class="slider-container">
     <div class="slider">
-        <div class="slide"><img src="car2.jfif" alt="Image 1"></div>
-        <div class="slide"><img src="car1.jfif" alt="Image 2"></div>
+        <div class="slide"><img src="car1.jfif" alt="Image 1"></div>
+        <div class="slide"><img src="car2.jfif" alt="Image 2"></div>
         <div class="slide"><img src="car3.jfif" alt="Image 3"></div>
     </div>
     <button class="prev" onclick="prevSlide()">&#10094;</button>
     <button class="next" onclick="nextSlide()">&#10095;</button>
 </div>
+
+<footer>
+    <p>Footer</p>
+</footer>
 
 <script>
     let slideIndex = 0;
