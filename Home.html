@@ -1,106 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-body {
-  background-image: url('background.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-</style> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speedstar Motors</title>
+    <title>Image Slider</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+        /* Basic styling */
+        .slider-container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .car-list {
+        .slider {
+            width: 100%;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            list-style: none;
-            padding: 0;
-            margin: 0;
         }
-
-        .car {
-            width: 300px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            text-align: center;
+        .slide {
+            flex: 1 0 auto;
+            transition: transform 0.5s ease;
         }
-
-        .car img {
-            max-width: 100%;
+        img {
+            width: 100%;
             height: auto;
-            border-radius: 5px;
         }
-
-        .car h2 {
-            margin-top: 10px;
-            font-size: 24px;
+        /* Navigation arrows styling */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            z-index: 1;
         }
-
-        .car p {
-            font-size: 18px;
-            margin-top: 5px;
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 style="color:white;">Welcome to Speedstar Motors</h1>
-        <h2 style="color:white;">Brand New Cars</h2>
-        <ul class="car-list">
-            <li class="car">
-                <img src="car1.jfif" alt="New Car 1">
-                <h2 style="color:white;">Golf 7R</h2>
-                <p style="color:white;">P75,000</p>
-            </li>
-            <li class="car">
-                <img src="car2.jfif" alt="New Car 2">
-                <h2 style="color:white;">Mercedes Benz A220</h2>
-                <p style="color:white;">P180,000</p>
-            </li>
-            <li class="car">
-              <img src="car3.jfif" alt="New car 2">
-              <h2 style="color:white;">Audi Etron GT</h2>
-              <p style="color:white;">P900,000</p>
-            </li>
-        </ul>
 
-        <h2 style="color:white;">Pre-Owned Cars</h2>
-        <ul class="car-list">
-            <li class="car">
-                <img src="preowned.jfif" alt="Pre-Owned Car 1">
-                <h2 style="color:white;">Mazda CX-5</h2>
-                <p style="color:white;">P40,000</p>
-            </li>
-            <li class="car">
-                <img src="preowned2.jfif" alt="Pre-Owned Car 2">
-                <h2 style="color:white;">Lamborghini</h2>
-                <p style="color:white;">P100,000</p>
-            <li class="car">
-                <img src="preowned3.jfif" alt="Pre-Owned car 3">
-                <h2 style="color:white;">Corolla</h2>
-                <p style="color:white;">P45,000</p>
-            </li>
-        </ul>
+<div class="slider-container">
+    <div class="slider">
+        <div class="slide"><img src="car2.jfif" alt="Image 1"></div>
+        <div class="slide"><img src="car1.jfif" alt="Image 2"></div>
+        <div class="slide"><img src="car3.jfif" alt="Image 3"></div>
     </div>
+    <button class="prev" onclick="prevSlide()">&#10094;</button>
+    <button class="next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let slides = document.getElementsByClassName("slide");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }    
+        slides[slideIndex - 1].style.display = "block";  
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+    function prevSlide() {
+        if (slideIndex === 1) {
+            slideIndex = slides.length;
+        } else {
+            slideIndex--;
+        }
+        showSlides();
+    }
+
+    function nextSlide() {
+        if (slideIndex === slides.length) {
+            slideIndex = 1;
+        } else {
+            slideIndex++;
+        }
+        showSlides();
+    }
+</script>
+
 </body>
 </html>
-
-
